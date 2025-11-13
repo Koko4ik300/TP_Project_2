@@ -1,0 +1,68 @@
+﻿<Page x:Class="TP_Project.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TP_Project"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="400"
+      Background="Gray"
+      Title="HomePage">
+
+    <Grid>
+        <DatePicker Name="FilterDatePicker"  Width="100"  Margin="25,22,275,445" SelectedDateChanged="SelectedDateChanged"/>
+
+        <Button Click ="Add_Click" Content="+" HorizontalAlignment="Left" Height="45" Margin="329,10,0,0" VerticalAlignment="Top" Width="45" RenderTransformOrigin="-0.05,0.574"/>
+
+        <TextBox Name="SearchBox" Height="20" RenderTransformOrigin="0.497,-8.19" Margin="150,22,150,392" VerticalAlignment="Top" TextChanged="Search" />
+
+        <ListBox x:Name="HomeworkList" Margin="25,78,26,31">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    
+                    <Border Margin="5" Padding="10" CornerRadius="10">
+
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Background" Value="LightCoral"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsDone}" Value="True">
+                                        <Setter Property="Background" Value="LightGreen"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Title}" FontWeight="Bold" Width="200"/>
+                                <CheckBox IsChecked="{Binding IsDone}" Content="Готово"/>
+                            </StackPanel>
+
+                            <TextBlock Text="{Binding Description}" Foreground="Gray" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding DueDate, StringFormat='До: {0:dd.MM.yyyy}'}" FontStyle="Italic" Foreground="Gray"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </Grid>
+
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                        CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+</Page>
