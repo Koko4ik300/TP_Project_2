@@ -23,7 +23,7 @@ namespace TP_Project
                 }
             }
         }
-
+        // тест!
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
