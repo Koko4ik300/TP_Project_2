@@ -1,6 +1,6 @@
-﻿
-
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 
 namespace TP_Project
 {
@@ -20,6 +20,7 @@ namespace TP_Project
                 {
                     isDone = value;
                     OnPropertyChanged(nameof(IsDone));
+                    SaveData.Save(new ObservableCollection<HomeworkItem>(HomePage.Items));
                 }
             }
         }

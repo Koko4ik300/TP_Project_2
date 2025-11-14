@@ -24,7 +24,7 @@ namespace TP_Project
                     IsDone = false,
                     DueDate = DatePicker.SelectedDate ?? DateTime.Now,
                 });
-
+                SaveData.Save(HomePage.Items);
                 NavigationService.GoBack();
             }
             else
