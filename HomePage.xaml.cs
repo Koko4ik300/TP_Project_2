@@ -1,7 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
+using System.IO;
+
 
 
 namespace TP_Project
@@ -14,6 +15,10 @@ namespace TP_Project
         {
             InitializeComponent();
             Instance = this;
+
+            foreach(var item in SaveData.Load())
+                Items.Add(item);
+            
             HomeworkList.ItemsSource = Items;
         }
 
