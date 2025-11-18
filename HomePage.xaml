@@ -16,7 +16,7 @@
 
         <TextBox Name="SearchBox" Height="20" RenderTransformOrigin="0.497,-8.19" Margin="150,22,150,392" VerticalAlignment="Top" TextChanged="Search" />
 
-        <ListBox x:Name="HomeworkList" Margin="25,78,26,31">
+        <ListBox x:Name="HomeworkList" Margin="25,78,26,31" MouseDoubleClick="HomeworkList_MouseDoubleClick">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     

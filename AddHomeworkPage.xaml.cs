@@ -13,7 +13,7 @@ namespace TP_Project
             InitializeComponent();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             if(!string.IsNullOrEmpty(SubjectTextBox.Text) && !string.IsNullOrEmpty(HomeworkTextBox.Text))
             {
@@ -31,10 +31,6 @@ namespace TP_Project
             {
                 MessageBox.Show("Не все поля заполнены");
             }
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
         }
     }
 }

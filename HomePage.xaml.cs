@@ -66,5 +66,15 @@ namespace TP_Project
             }
             HomeworkList.ItemsSource = filtered;
         }
+
+        private void HomeworkList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            ListBox lb = sender as ListBox;
+            HomeworkItem hi = HomeworkList.SelectedItem as HomeworkItem;
+            if (lb != null && lb.SelectedItem != null)
+            {
+                NavigationService.Navigate(new EditPage(hi));
+            }
+        }
     }
 }
