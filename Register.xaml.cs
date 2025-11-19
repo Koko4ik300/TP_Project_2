@@ -25,6 +25,15 @@ namespace TP_Project
             InitializeComponent();
         }
 
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Открытие формы входа
+            Login loginWindow = new Login();
+            loginWindow.Show();
+            this.Close();
+        }
+
+       
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
@@ -40,6 +49,7 @@ namespace TP_Project
                 MessageBox.Show("Заполните все поля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
+
 
             
 
