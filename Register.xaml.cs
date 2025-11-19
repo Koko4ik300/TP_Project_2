@@ -18,7 +18,7 @@ namespace TP_Project
     /// <summary>
     /// Interaction logic for Register.xaml
     /// </summary>
-    public partial class Register : Window
+    public partial class Register : Page
     {
         public Register()
         {
@@ -27,13 +27,10 @@ namespace TP_Project
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            // Открытие формы входа
-            Login loginWindow = new Login();
-            loginWindow.Show();
-            this.Close();
+            // Переход на страницу входа
+            Login loginPage = new Login();
+            NavigationService.Navigate(loginPage);
         }
-
-       
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
@@ -50,16 +47,12 @@ namespace TP_Project
                 return;
             }
 
-
-            
-
             // Проверка совпадения паролей
             if (password != confirmPassword)
             {
                 MessageBox.Show("Пароли не совпадают.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-
 
             MessageBox.Show($"Регистрация прошла успешно!\nДобро пожаловать, {username}!",
                             "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
