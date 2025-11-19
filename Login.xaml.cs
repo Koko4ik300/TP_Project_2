@@ -17,7 +17,7 @@ namespace TP_Project
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class Login : Page
     {
         public Login()
         {
@@ -48,26 +48,16 @@ namespace TP_Project
                 return;
             }
 
-            // Здесь должна быть реальная логика аутентификации
+            
             if (AuthenticateUser(username, password))
             {
-                // Сохранение данных если выбрано "Запомнить меня"
-                if (RememberMeCheckBox.IsChecked == true)
-                {
-                    SaveCredentials(username);
-                }
-                else
-                {
-                    ClearCredentials();
-                }
-
+               
                 MessageBox.Show($"Вход выполнен успешно!\nДобро пожаловать, {username}!",
                               "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                // Здесь можно перейти на главную форму приложения
-                // MainWindow mainWindow = new MainWindow();
-                // mainWindow.Show();
-                // this.Close();
+             
+                HomePage mainPage = new HomePage();
+                NavigationService.Navigate(mainPage);
             }
             else
             {
@@ -78,10 +68,9 @@ namespace TP_Project
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            // Открытие формы регистрации
-            Register registerWindow = new Register();
-            registerWindow.Show();
-            this.Close();
+            // Переход на страницу регистрации
+            Register registerPage = new Register();
+            NavigationService.Navigate(registerPage);
         }
 
         private bool AuthenticateUser(string username, string password)
@@ -93,52 +82,9 @@ namespace TP_Project
             // Пример простой проверки (замените на реальную логику)
             return username == "admin" && password == "12345";
 
-            // Для реального приложения может выглядеть так:
-            // using (var context = new AppDbContext())
-            // {
-            //     var user = context.Users.FirstOrDefault(u => u.Username == username);
-            //     if (user != null && VerifyPassword(password, user.PasswordHash))
-            //     {
-            //         return true;
-            //     }
-            // }
-            // return false;
+           
         }
 
-        private void SaveCredentials(string username)
-        {
-            // Временное решение - используем обычные переменные
-            // В реальном приложении замените на настройки
-            Application.Current.Properties["Username"] = username;
-            Application.Current.Properties["RememberMe"] = true;
-        }
-
-        private void ClearCredentials()
-        {
-            Application.Current.Properties["Username"] = string.Empty;
-            Application.Current.Properties["RememberMe"] = false;
-        }
-
-        private void LoadCredentials()
-        {
-            if (Application.Current.Properties.Contains("RememberMe") &&
-                (bool)Application.Current.Properties["RememberMe"] &&
-                Application.Current.Properties.Contains("Username"))
-            {
-                string savedUsername = Application.Current.Properties["Username"] as string;
-                if (!string.IsNullOrEmpty(savedUsername))
-                {
-                    UsernameBox.Text = savedUsername;
-                    RememberMeCheckBox.IsChecked = true;
-                    PasswordBox.Focus();
-                }
-            }
-        }
-
-        protected override void OnContentRendered(EventArgs e)
-        {
-            base.OnContentRendered(e);
-            LoadCredentials();
-        }
+      
     }
 }

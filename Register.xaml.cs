@@ -27,7 +27,7 @@ namespace TP_Project
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            // Переход на страницу входа
+          
             Login loginPage = new Login();
             NavigationService.Navigate(loginPage);
         }
@@ -38,7 +38,7 @@ namespace TP_Project
             string password = PasswordBox.Password;
             string confirmPassword = ConfirmPasswordBox.Password;
 
-            // Проверка на заполненность
+           
             if (string.IsNullOrEmpty(username) ||
                 string.IsNullOrEmpty(password) ||
                 string.IsNullOrEmpty(confirmPassword))
@@ -47,7 +47,7 @@ namespace TP_Project
                 return;
             }
 
-            // Проверка совпадения паролей
+            
             if (password != confirmPassword)
             {
                 MessageBox.Show("Пароли не совпадают.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -57,7 +57,7 @@ namespace TP_Project
             MessageBox.Show($"Регистрация прошла успешно!\nДобро пожаловать, {username}!",
                             "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            // Очистка формы
+          
             UsernameBox.Clear();
             PasswordBox.Clear();
             ConfirmPasswordBox.Clear();
