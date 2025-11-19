@@ -41,23 +41,20 @@ namespace TP_Project
             string username = UsernameBox.Text.Trim();
             string password = PasswordBox.Password;
 
-            // Проверка на заполненность полей
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Заполните все поля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            
-            if (AuthenticateUser(username, password))
+            // Используем аутентификацию из UserManager
+            if (UserManager.AuthenticateUser(username, password))
             {
-               
                 MessageBox.Show($"Вход выполнен успешно!\nДобро пожаловать, {username}!",
                               "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
 
-             
-                HomePage mainPage = new HomePage();
-                NavigationService.Navigate(mainPage);
+                HomePage homePage = new HomePage();
+                NavigationService.Navigate(homePage);
             }
             else
             {

@@ -38,7 +38,6 @@ namespace TP_Project
             string password = PasswordBox.Password;
             string confirmPassword = ConfirmPasswordBox.Password;
 
-           
             if (string.IsNullOrEmpty(username) ||
                 string.IsNullOrEmpty(password) ||
                 string.IsNullOrEmpty(confirmPassword))
@@ -47,20 +46,31 @@ namespace TP_Project
                 return;
             }
 
-            
             if (password != confirmPassword)
             {
                 MessageBox.Show("Пароли не совпадают.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            MessageBox.Show($"Регистрация прошла успешно!\nДобро пожаловать, {username}!",
-                            "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+            try
+            {
+                // Сохраняем пользователя через UserManager
+                UserManager.RegisterUser(username, password);
 
-          
-            UsernameBox.Clear();
-            PasswordBox.Clear();
-            ConfirmPasswordBox.Clear();
+                MessageBox.Show($"Регистрация прошла успешно!\nДобро пожаловать, {username}!",
+                                "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                UsernameBox.Clear();
+                PasswordBox.Clear();
+                ConfirmPasswordBox.Clear();
+
+                Login loginPage = new Login();
+                NavigationService.Navigate(loginPage);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show($"Ошибка регистрации: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
